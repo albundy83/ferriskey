@@ -1,5 +1,6 @@
-import { KeyRound, Plus, Shield, Trash2 } from 'lucide-react'
+import { KeyRound, Pencil, Plus, Shield, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router'
 import { Button } from '@/components/kit/button'
 import { ConfirmDeleteAlert } from '@/components/confirm-delete-alert'
 import { CreatePickerDialog, ListingPage, Pill, StatusDot } from '@/components/kit'
@@ -35,6 +36,7 @@ export interface PageProvidersOverviewProps {
   confirm: ConfirmState
   providerHref: (provider: IdentityProvider) => string
   createUrl: (protocol: ProviderProtocol) => string
+  editHref: (provider: IdentityProvider) => string
   onPickerOpenChange: (open: boolean) => void
   onQuickCreate: (templateId: string) => void
   onDelete: (provider: IdentityProvider) => void
@@ -67,12 +69,14 @@ export default function PageProvidersOverview({
   confirm,
   providerHref,
   createUrl,
+  editHref,
   onPickerOpenChange,
   onQuickCreate,
   onDelete,
   onConfirmClose,
 }: PageProvidersOverviewProps) {
   const { t } = useTranslation('identity-provider')
+  const navigate = useNavigate()
 
   const protocolChoices: Choice<ProviderProtocol>[] = [
     {
@@ -156,15 +160,26 @@ export default function PageProvidersOverview({
       header: '',
       align: 'right',
       render: (p) => (
-        <Button
-          variant='ghost'
-          size='icon'
-          aria-label={t('list.row_delete', { name: providerName(p) })}
-          className='text-neutral-400 dark:text-neutral-500 hover:text-fk-danger'
-          onClick={() => onDelete(p)}
-        >
-          <Trash2 className='size-4' />
-        </Button>
+        <div className='flex items-center justify-end gap-1'>
+          <Button
+            variant='ghost'
+            size='icon'
+            aria-label={t('list.row_edit', { name: providerName(p) })}
+            className='text-neutral-400 dark:text-neutral-500 hover:text-fk-primary'
+            onClick={() => navigate(editHref(p))}
+          >
+            <Pencil className='size-4' />
+          </Button>
+          <Button
+            variant='ghost'
+            size='icon'
+            aria-label={t('list.row_delete', { name: providerName(p) })}
+            className='text-neutral-400 dark:text-neutral-500 hover:text-fk-danger'
+            onClick={() => onDelete(p)}
+          >
+            <Trash2 className='size-4' />
+          </Button>
+        </div>
       ),
     },
   ]

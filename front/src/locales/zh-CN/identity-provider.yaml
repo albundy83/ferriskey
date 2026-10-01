@@ -81,6 +81,7 @@ list:
   description: 联合到此域的外部认证源。
   add: 添加提供商
   search_placeholder: 按名称或别名筛选…
+  row_edit: '编辑 {{name}}'
   row_delete: '删除 {{name}}'
   columns:
     provider: 提供商
@@ -273,6 +274,7 @@ detail:
     description: 协议设置，按 API 返回的原样呈现。密钥绝不会以明文形式离开服务器。
     secret_title: API 绝不会以明文形式返回此值。
     empty: 未记录任何配置项，此提供商无法代理登录。
+    edit: 编辑配置
   metadata:
     title: 元数据
     description: 系统信息，不可编辑。
@@ -291,8 +293,26 @@ detail:
     discard: 放弃
     submit: 保存更改
   update_success: 提供商更新成功
+  update_error: 无法更新该提供商
   delete_success: 提供商删除成功
   delete_error: 删除提供商失败
+
+edit:
+  back: 返回提供商
+  title: 编辑身份提供商
+  # "{{protocol}}" is an uppercased protocol acronym (OIDC, OAUTH2), taken from the provider.
+  description: '更新 {{protocol}} 提供商的配置。'
+  provider_info: '别名“{{alias}}”— 协议 {{protocol}}'
+  credentials:
+    title: 凭据
+    description: 更新由提供商控制台签发的凭据。
+  alias:
+    description: 提供商在此域中的技术名称。创建后无法更改。
+    immutable_hint: 别名是重定向 URI 的一部分，无法修改。
+  actions:
+    cancel: 取消
+    save: 保存更改
+    saving: 正在保存…
 
 validation:
   alias_required: 别名为必填项

@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router'
 import PageProvidersOverviewFeature from './feature/page-providers-overview-feature'
 import PageCreateProviderFeature from './feature/page-create-provider-feature'
 import PageProviderDetailFeature from './feature/page-provider-detail-feature'
+import PageEditProviderFeature from './feature/page-edit-provider-feature'
 
 export default function PageIdentityProviders() {
   return (
@@ -9,6 +10,7 @@ export default function PageIdentityProviders() {
       <Route index element={<PageProvidersOverviewFeature />} />
       <Route path='create' element={<PageCreateProviderFeature />} />
       <Route path=':alias' element={<PageProviderDetailFeature />} />
+      <Route path=':alias/edit' element={<PageEditProviderFeature />} />
     </Routes>
   )
 }

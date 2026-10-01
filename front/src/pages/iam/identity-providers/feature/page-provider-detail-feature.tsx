@@ -102,6 +102,7 @@ export default function PageProviderDetailFeature() {
       onDiscard={() => setDraft(pristine)}
       onSave={handleSave}
       onDelete={handleDelete}
+      onEdit={() => navigate(`${listUrl}/${providerAlias}/edit`)}
     />
   )
 }

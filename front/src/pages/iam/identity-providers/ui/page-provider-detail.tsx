@@ -1,4 +1,4 @@
-import { ArrowLeft, Power, PowerOff } from 'lucide-react'
+import { ArrowLeft, Pencil, Power, PowerOff } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/kit/button'
 import { Input } from '@/components/ui/input'
@@ -36,6 +36,7 @@ export interface PageProviderDetailProps {
   onDiscard: () => void
   onSave: () => void
   onDelete: () => void
+  onEdit: () => void
 }
 
 const SECRET_MASK = '\u2022'.repeat(8)
@@ -56,6 +57,7 @@ export default function PageProviderDetail({
   onDiscard,
   onSave,
   onDelete,
+  onEdit,
 }: PageProviderDetailProps) {
   const { t } = useTranslation('identity-provider')
 
@@ -227,6 +229,12 @@ export default function PageProviderDetail({
           title={t('detail.config.title')}
           description={t('detail.config.description')}
           contained={configEntries.length > 0}
+          action={
+            <Button variant='outline' size='sm' onClick={onEdit}>
+              <Pencil className='size-3.5' />
+              {t('detail.config.edit')}
+            </Button>
+          }
         >
           {configEntries.length > 0 ? (
             configEntries.map(([key, value]) => (

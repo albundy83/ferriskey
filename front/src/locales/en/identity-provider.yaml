@@ -133,6 +133,7 @@ list:
     ldap:
       description: A directory is a user federation source, not an identity provider.
       disabled_reason: A directory is configured under User Federation, not here.
+  row_edit: Edit {{name}}
   delete:
     title: Delete provider?
     description: Are you sure you want to delete "{{name}}"?
@@ -267,6 +268,7 @@ detail:
     description: Protocol settings, as the API returns them. Secrets never leave the server in clear text.
     secret_title: The API never returns this value in clear text.
     empty: No configuration setting recorded — this provider cannot broker a login.
+    edit: Edit configuration
   metadata:
     title: Metadata
     description: System information, not editable.
@@ -286,8 +288,26 @@ detail:
     discard: Discard
     submit: Save changes
   update_success: Provider updated successfully
+  update_error: The provider could not be updated
   delete_success: Provider deleted successfully
   delete_error: Failed to delete provider
+
+edit:
+  back: Back to provider
+  title: Edit identity provider
+  # "{{protocol}}" is an uppercased protocol acronym (OIDC, OAUTH2), taken from the provider.
+  description: Update the {{protocol}} provider configuration.
+  provider_info: Alias "{{alias}}" — protocol {{protocol}}
+  credentials:
+    title: Credentials
+    description: Update the credentials issued by the provider console.
+  alias:
+    description: Technical name of the provider in this realm. Cannot be changed after creation.
+    immutable_hint: The alias is part of the Redirect URI and cannot be modified.
+  actions:
+    cancel: Cancel
+    save: Save changes
+    saving: Saving…
 
 validation:
   alias_required: Alias is required

@@ -72,6 +72,7 @@ export default function PageProvidersOverviewFeature() {
       confirm={confirm}
       providerHref={(provider) => `${listUrl}/${provider.alias}`}
       createUrl={(protocol: ProviderProtocol) => `${listUrl}/create?protocol=${protocol}`}
+      editHref={(provider) => `${listUrl}/${provider.alias}/edit`}
       onPickerOpenChange={setOpen}
       onQuickCreate={handleQuickCreate}
       onDelete={handleDelete}
